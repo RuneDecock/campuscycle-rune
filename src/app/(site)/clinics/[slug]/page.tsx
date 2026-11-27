@@ -112,10 +112,25 @@ export default async function ClinicPage({ params }: Props) {
             <dd className="font-semibold">{formatWhen(clinic)}</dd>
             {facts.place && (
               <>
+  
+  
                 <dt className="text-ink-soft">Place</dt>
                 <dd className="min-w-0 font-semibold [overflow-wrap:anywhere]">{facts.place}</dd>
               </>
             )}
+            {Array.isArray(clinic.whatToBring) && clinic.whatToBring.length > 0 && (
+  <>
+    <dt className="text-ink-soft">What to bring</dt>
+    <dd className="min-w-0 font-semibold">
+      <ul className="list-disc pl-5 space-y-1">
+        {clinic.whatToBring.map((row, index) =>
+          row?.item ? <li key={row.id ?? index}>{row.item}</li> : null
+        )}
+      </ul>
+    </dd>
+  </>
+)}
+            
           </dl>
         </section>
 
